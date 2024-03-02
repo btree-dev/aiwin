@@ -108,14 +108,7 @@ export default function ContentCreator({ contractAddress, abi, connected,  }: { 
 
     try {
       
-      const metadataURL: string = await generateMetadata();
-      console.log("metadataURL 2 - " + metadataURL );
-      setSigner(metadataURL);
-      const NFTContract = new Contract(contractAddress, abi, signer);
-      const mintTx = await NFTContract.mintAndRegister(metadataURL, 1);
-      console.log("mintTx - " + mintTx );
-      setTxHash(mintTx.hash);
-      await mintTx.wait();
+   
      // setTxHash(NULL);
     } catch (e) {
       console.log(e);

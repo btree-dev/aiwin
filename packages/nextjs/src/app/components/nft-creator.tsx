@@ -115,7 +115,7 @@ export default function NftCreator({ contractAddress, abi, connected,  }: { cont
 
     try {
       
-      const metadataURL: string = await generateMetadata();
+      const metadataURL: void = await generateMetadata();
       let contractsDir = "src/app/abi/contract-abi.json";
       let address = "0xeE2ed3c2C51497dcb47f9AFFcf69d573E3198CCf"
       var customHttpProvider = new ethers.JsonRpcProvider("https://rpc.sepolia.org");
@@ -136,20 +136,6 @@ export default function NftCreator({ contractAddress, abi, connected,  }: { cont
         // Wait for the transaction to be mined
         const res = await tx.wait();
         console.log("Transaction confirmed:", tx.hash);
-        const transferEvent = res.events?.filter((e) => e.event === "Transfer")[0];
-        if (transferEvent) {
-            const tokenId = transferEvent.args.tokenId; // How you access the tokenId might vary
-            let tx2 = await contract.setApprovalForAll(address, true);
-            console.log("TokenId:", tokenId.toString());
-            const res2 = await tx2.wait();
-            console.log("Transaction confirmed:", tx2.hash);
-            let tx3 = await contract.reg(ModelName, tokenURI, policyId, hash, tokenId, { gasLimit: 1000000, gasPrice: ethers.parseUnits('20', 'gwei') });
-            const res3 = await tx3.wait();
-            console.log("Transaction confirmed:", tx3.hash);
-
-        } else {
-            console.log("No Transfer event found");
-        }
 
     } catch (error) {
         console.error("Error minting AI:", error);
@@ -157,8 +143,8 @@ export default function NftCreator({ contractAddress, abi, connected,  }: { cont
       const mintTx ="";
       //const mintTx = await NFTContract.mintAndRegister(metadataURL, 1);
       console.log("mintTx - " + mintTx );
-      setTxHash(mintTx.hash);
-      await mintTx.wait();
+      // setTxHash(mintTx.hash);
+      // await mintTx.wait();
      // setTxHash(NULL);
     } catch (e) {
       console.log(e);

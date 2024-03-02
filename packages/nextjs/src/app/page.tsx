@@ -4,9 +4,6 @@ import SDKContainer from './SDKContainer'
 
 export default function Home() {
   return (
-    <>
-      <SDKContainer>
-      </SDKContainer>
-    </>
+      <SDKContainer/>
   )
 }

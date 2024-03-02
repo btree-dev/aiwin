@@ -406,7 +406,7 @@ export default function SDKContainer() {
           </TabPanel>
           <TabPanel>
             <ContentCreator
-            abi={contract.abi}
+            abi={contract}
             connected = {connected}
             contractAddress={"0xeE2ed3c2C51497dcb47f9AFFcf69d573E3198CCf"}
           />
